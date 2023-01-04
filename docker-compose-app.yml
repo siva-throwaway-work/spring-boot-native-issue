@@ -1,0 +1,16 @@
+version: "3.8"
+services:
+  payment-service:
+    image: payment-service-native
+    container_name: payment-service-native
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - SPRING_DATASOURCE_DRIVER-CLASS-NAME=org.postgresql.Driver
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://bookstore-postgres:5432/postgres
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
+    depends_on:
+      - bookstore-postgres
